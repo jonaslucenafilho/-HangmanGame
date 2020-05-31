@@ -31,7 +31,7 @@ public class UI {
 		
 		char c = line.charAt(0);
 		
-		if (Character.isLetter(c)) {
+		if (!Character.isLetter(c)) {
 			throw new InvalidCharacterException("Only letters must be entered");
 		}
 		
