@@ -11,7 +11,7 @@ import br.com.jonas.hangmangame.ui.UI;
 
 public class Game {
 
-	public void start() {
+	public void start(String[] args) {
 		UI.print("Welcome to the Hangman Game!");
 		
 		Dictionary dictionary = Dictionary.getInstance();
@@ -21,6 +21,10 @@ public class Game {
 		
 		Set<Character> usedChars = new HashSet<>();
 		int errorCount = 0;
+		
+		if (args.length > 0) {
+			Config.setMaxErrors(args[0]);
+		}
 		
 		int maxErrors = Integer.parseInt(Config.get("maxErrors"));
 		UI.print("You can make mistakes at most " + maxErrors + " time(s)");
