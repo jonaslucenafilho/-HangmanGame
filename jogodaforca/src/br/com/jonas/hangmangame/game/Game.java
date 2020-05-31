@@ -3,14 +3,13 @@ package br.com.jonas.hangmangame.game;
 import java.util.HashSet;
 import java.util.Set;
 
+import br.com.jonas.hangmangame.core.Config;
 import br.com.jonas.hangmangame.core.Dictionary;
 import br.com.jonas.hangmangame.core.Word;
 import br.com.jonas.hangmangame.exceptions.InvalidCharacterException;
 import br.com.jonas.hangmangame.ui.UI;
 
 public class Game {
-	
-	private static final int MAX_ERRORS = 5;
 
 	public void start() {
 		UI.print("Welcome to the Hangman Game!");
@@ -22,6 +21,9 @@ public class Game {
 		
 		Set<Character> usedChars = new HashSet<>();
 		int errorCount = 0;
+		
+		int maxErrors = Integer.parseInt(Config.get("maxErrors"));
+		UI.print("You can make mistakes at most " + maxErrors + " time(s)");
 		
 		while (true) {
 			UI.print(word);
@@ -43,8 +45,8 @@ public class Game {
 				} else {
 					errorCount++;
 					
-					if (errorCount < MAX_ERRORS) {
-						UI.print("You missed! You can still get it wrong " + (MAX_ERRORS - errorCount) + " time(s)");
+					if (errorCount < maxErrors) {
+						UI.print("You missed! You can still get it wrong " + (maxErrors - errorCount) + " time(s)");
 					}
 				}
 				
@@ -56,7 +58,7 @@ public class Game {
 					break;
 				}
 				
-				if (errorCount == MAX_ERRORS) {
+				if (errorCount == maxErrors) {
 					UI.print("You lost the game! The correct word was: " + word.getOriginalWord());
 					UI.print("End of the game!");
 					break;
