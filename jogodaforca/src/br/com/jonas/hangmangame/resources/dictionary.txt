@@ -1,0 +1,7 @@
+class
+object
+heritage
+polymorphism
+encapsulation
+overload
+overwrite
