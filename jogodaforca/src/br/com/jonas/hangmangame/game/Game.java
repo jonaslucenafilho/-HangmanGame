@@ -1,17 +1,18 @@
 package br.com.jonas.hangmangame.game;
 
+import br.com.jonas.hangmangame.core.Dictionary;
 import br.com.jonas.hangmangame.core.Word;
 
 public class Game {
 
 	public void start() {
 		
-		Word word = new Word("casa");
-		word.hasChar('a');
-		word.hasChar('c');
-		word.hasChar('s');
-		System.out.println(word.discovered());
+		Dictionary dictionary1 = Dictionary.getInstance();
+		Dictionary dictionary2 = Dictionary.getInstance();
+		System.out.println(dictionary1);
+		System.out.println(dictionary2);
 		
-		System.out.println(word);
+		Word w1 = dictionary1.nextWord();
+		System.out.println(w1.getOriginalWord());
 	}
 }

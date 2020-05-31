@@ -11,7 +11,20 @@ public class Dictionary {
 	
 	private static final String FILE_NAME = "dictionary.txt";
 	
+	private static Dictionary instance;
+	
 	private List<String> words = new ArrayList<>();
+	
+	private Dictionary() {
+		load();
+	}
+	
+	public static Dictionary getInstance() {
+		if (instance == null) {
+			instance = new Dictionary();
+		}
+		return instance;
+	}
 	
 	private void load() {
 		
@@ -28,7 +41,7 @@ public class Dictionary {
 		}
 	}
 	
-	public Word nextWorld() {
+	public Word nextWord() {
 		int pos = RandomUtils.newRandomNumber(0, words.size());
 		return new Word(words.get(pos));
 	}
